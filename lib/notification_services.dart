@@ -105,7 +105,7 @@ class NotificationServices {
         importance: Importance.max  ,
         showBadge: true ,
         playSound: true,
-        sound: const RawResourceAndroidNotificationSound('jetsons_doorbell')
+
     );
 
     AndroidNotificationDetails androidNotificationDetails = AndroidNotificationDetails(
