@@ -112,8 +112,8 @@ class NotificationServices {
         channel.id.toString(),
         channel.name.toString() ,
         channelDescription: 'your channel description',
-        importance: Importance.high,
-        priority: Priority.high ,
+        importance: Importance.max,
+        priority: Priority.max ,
         playSound: true,
         ticker: 'ticker' ,
         sound: channel.sound
@@ -143,6 +143,7 @@ class NotificationServices {
 
   }
 
+
   //function to get device token on which we will send the notifications
   Future<String> getDeviceToken() async {
     String? token = await messaging.getToken();
@@ -150,10 +151,15 @@ class NotificationServices {
   }
 
   void isTokenRefresh()async{
-    messaging.onTokenRefresh.listen((event) {
-      event.toString();
+    messaging.onTokenRefresh.listen((String event) {
+
       if (kDebugMode) {
-        print('refresh');
+        debugPrint('token is refresh');
+        print("token is :: ${event.toString()}");
+      }
+      else{
+        debugPrint("token is outdated...please wait we generate new one");
+        print("new token is :: ${event.toString()}");
       }
     });
   }
